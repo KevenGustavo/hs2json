@@ -1,0 +1,15 @@
+# Dependencias do Projeto hs2json
+#
+# No ecossistema Haskell, o arquivo de lock equivalente ao requirements.txt
+# e o 'cabal.project.freeze' (gerado via cabal freeze).
+#
+# 1. Toolchain Haskell (gerenciado via GHCup):
+# ghc == 9.4.8
+# cabal-install >= 3.10
+#
+# 2. Bibliotecas Haskell (Hackage - veja cabal.project.freeze):
+# base >= 4.14 && < 5
+# QuickCheck == 2.19.0.0
+#
+# 3. Dependencias de Sistema (Ubuntu / Debian):
+# sudo apt install -y build-essential curl libffi-dev libgmp-dev libncurses-dev pkg-config zlib1g-dev git
