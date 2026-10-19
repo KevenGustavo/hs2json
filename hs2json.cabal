@@ -6,7 +6,7 @@ description:        Projeto da disciplina de Programacao Funcional (Haskell):
                     tipo JValue, biblioteca Prettify, renderizador PrettyJSON
                     e suite de testes baseada em propriedades.
 license:            BSD-3-Clause
-author:             Keven Gustavo, Leonardo Abreu
+author:             Keven Gomes, Leonardo Abreu
 category:           Text
 build-type:         Simple
 

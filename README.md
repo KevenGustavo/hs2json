@@ -1,10 +1,8 @@
 # hs2json
 
-> 🎥 **Vídeo de apresentação:** _(link a ser adicionado após gravação)_
-
 Biblioteca Haskell desenvolvida para representar dados JSON (`JValue`), serializá-los com formatação legível através de uma biblioteca própria de *pretty printing* (`Prettify`) e validar propriedades e invariantes via **QuickCheck**.
 
-Projeto desenvolvido para a disciplina de **Programação Funcional** (dupla: **Keven Gustavo** e **Leonardo**).
+Projeto desenvolvido para a disciplina de **Programação Funcional** (dupla: **Keven Gomes** e **Leonardo Abreu**).
 
 ---
 
@@ -98,3 +96,11 @@ hs2json/
     ├── DocProps.hs         # Propriedades de teste para Prettify
     └── PrettyProps.hs      # Propriedades de teste para PrettyJSON
 ```
+
+---
+
+## 👥 Autores
+
+- **Keven Gomes**
+- **Leonardo Abreu**
+
