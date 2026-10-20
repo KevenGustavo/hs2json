@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- | Modulo PrettyProps: suite de testes baseada em propriedades para o renderizador PrettyJSON.
 -- Verifica a conformidade com a RFC 8259 (regras de escape, pares substitutos Unicode para
--- caracteres astrais e delimitadores estruturais basicos).
+-- caracteres astrais, delimitadores estruturais de arrays e objetos, e consistencia de layout).
 module PrettyProps (runTests) where
 
 import Prelude hiding ((<>))
@@ -10,7 +10,7 @@ import Data.Char (ord, chr)
 import Test.QuickCheck
 
 import SimpleJSON (JValue(..))
-import Prettify (compact)
+import Prettify (compact, pretty)
 import PrettyJSON (renderJValue)
 
 --------------------------------------------------------------------------------
@@ -76,6 +76,43 @@ prop_quote_and_backslash_escaped = forAll (elements ["\"", "\\", "\"\t\\"]) $ \s
     unescapedQuotes [] = []
     unescapedQuotes ('\\':_:cs) = unescapedQuotes cs
     unescapedQuotes (c:cs)      = c : unescapedQuotes cs
+
+--------------------------------------------------------------------------------
+-- Propriedades de colecoes (Arrays e Objetos)
+--------------------------------------------------------------------------------
+
+-- | Array vazio deve ser renderizado exatamente como "[]".
+prop_array_empty :: Bool
+prop_array_empty = compact (renderJValue (JArray [])) == "[]"
+
+-- | Qualquer array de elementos deve ser delimitado por colchetes '[' e ']'.
+prop_array_delimiters :: [Double] -> Bool
+prop_array_delimiters xs =
+    let rendered = compact (renderJValue (JArray (map JNumber xs)))
+    in head rendered == '[' && last rendered == ']'
+
+-- | Objeto vazio deve ser renderizado exatamente como "{}".
+prop_object_empty :: Bool
+prop_object_empty = compact (renderJValue (JObject [])) == "{}"
+
+-- | Qualquer objeto chave-valor deve ser delimitado por chaves '{' e '}'.
+prop_object_delimiters :: [(String, Double)] -> Bool
+prop_object_delimiters kvs =
+    let rendered = compact (renderJValue (JObject [ (k, JNumber v) | (k, v) <- kvs ]))
+    in head rendered == '{' && last rendered == '}'
+
+--------------------------------------------------------------------------------
+-- Invariantes de layout: compact vs pretty
+--------------------------------------------------------------------------------
+
+-- | Para colecoes lineares simples, a renderizacao pretty e a renderizacao compacta
+-- preservam os mesmos caracteres nao-espaco (mesmo conteudo estrutural).
+prop_pretty_vs_compact_tokens :: [Double] -> Bool
+prop_pretty_vs_compact_tokens xs =
+    let val = JArray (map JNumber xs)
+        comp = filter (`notElem` " \t\n") (compact (renderJValue val))
+        pret = filter (`notElem` " \t\n") (pretty 80 (renderJValue val))
+    in comp == pret
 
 --------------------------------------------------------------------------------
 -- Agrupamento e execucao via Template Haskell
