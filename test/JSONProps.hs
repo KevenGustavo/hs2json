@@ -1,13 +1,22 @@
 {-# LANGUAGE TemplateHaskell #-}
--- | Propriedades para SimpleJSON e PutJSON.
--- Pendente: definir propriedades QuickCheck (prop_...) testando extratores (getString, getInt, etc.)
--- e corretude da serializacao de PutJSON.
+
 module JSONProps (runTests) where
 
-import Test.QuickCheck ()
-import Test.QuickCheck.All (quickCheckAll)
+import Test.QuickCheck
+import SimpleJSON
+import JSONGen ()
 
--- Escreva aqui as propriedades 'prop_...' ANTES do 'return []'.
+prop_getString :: String -> Bool
+prop_getString s =
+    getString (JString s) == Just s
+
+prop_getBool :: Bool -> Bool
+prop_getBool b =
+    getBool (JBool b) == Just b
+
+prop_getDouble :: Double -> Bool
+prop_getDouble d =
+    getDouble (JNumber d) == Just d
 
 return []
 
