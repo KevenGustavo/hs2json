@@ -20,7 +20,8 @@ data JValue = JString String
               deriving (Eq, Ord, Show)
 
 getString :: JValue -> Maybe String
-getString = undefined
+getString (JString s) = Just s
+getString _           = Nothing
 
 getInt :: JValue -> Maybe Int
 getInt = undefined
@@ -29,7 +30,8 @@ getDouble :: JValue -> Maybe Double
 getDouble = undefined
 
 getBool :: JValue -> Maybe Bool
-getBool = undefined
+getBool (JBool b) = Just b
+getBool _         = Nothing
 
 getObject :: JValue -> Maybe [(String, JValue)]
 getObject = undefined
