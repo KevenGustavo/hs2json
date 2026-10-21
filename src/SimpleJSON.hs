@@ -24,10 +24,12 @@ getString (JString s) = Just s
 getString _           = Nothing
 
 getInt :: JValue -> Maybe Int
-getInt = undefined
+getInt (JNumber n) = Just (truncate n)
+getInt _           = Nothing
 
 getDouble :: JValue -> Maybe Double
-getDouble = undefined
+getDouble (JNumber n) = Just n
+getDouble _           = Nothing
 
 getBool :: JValue -> Maybe Bool
 getBool (JBool b) = Just b
