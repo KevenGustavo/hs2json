@@ -5,6 +5,7 @@ module JSONProps (runTests) where
 import Test.QuickCheck
 import SimpleJSON
 import JSONGen ()
+import PutJSON (renderJValue)
 
 prop_getString :: String -> Bool
 prop_getString s =
@@ -52,6 +53,27 @@ prop_wrongAccessor :: String -> Bool
 prop_wrongAccessor s =
     getBool (JString s) == Nothing
     && not (isNull (JString s))
+
+prop_render_total :: JValue -> Bool
+prop_render_total v =
+    length (renderJValue v) > 0
+
+prop_render_string :: String -> Bool
+prop_render_string s =
+    renderJValue (JString s) == show s
+
+prop_render_number :: Double -> Bool
+prop_render_number d =
+    renderJValue (JNumber d) == show d
+
+prop_render_array :: [JValue] -> Bool
+prop_render_array xs =
+    let r = renderJValue (JArray xs)
+    in head r == '[' && last r == ']'
+
+prop_render_deterministic :: JValue -> Bool
+prop_render_deterministic v =
+    renderJValue v == renderJValue v
 
 return []
 
