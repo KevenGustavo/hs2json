@@ -18,6 +18,11 @@ prop_getDouble :: Double -> Bool
 prop_getDouble d =
     getDouble (JNumber d) == Just d
 
+prop_getInt :: Int -> Property
+prop_getInt n =
+    abs (toInteger n) < 2^(50 :: Int) ==>
+    getInt (JNumber (fromIntegral n)) == Just n
+
 return []
 
 runTests :: IO Bool
