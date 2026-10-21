@@ -36,10 +36,13 @@ getBool (JBool b) = Just b
 getBool _         = Nothing
 
 getObject :: JValue -> Maybe [(String, JValue)]
-getObject = undefined
+getObject (JObject o) = Just o
+getObject _           = Nothing
 
 getArray :: JValue -> Maybe [JValue]
-getArray = undefined
+getArray (JArray a) = Just a
+getArray _          = Nothing
 
 isNull :: JValue -> Bool
-isNull = undefined
+isNull JNull = True
+isNull _     = False
