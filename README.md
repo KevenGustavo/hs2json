@@ -1,5 +1,10 @@
 # hs2json
 
+> 🎥 **Vídeo de apresentação:** _a definir_
+>
+> Demonstração do funcionamento do projeto, da arquitetura,
+> dos testes automatizados e das dificuldades encontradas.
+
 Biblioteca Haskell desenvolvida para representar dados JSON (`JValue`), serializá-los com formatação legível através de uma biblioteca própria de *pretty printing* (`Prettify`) e validar propriedades e invariantes via **QuickCheck**.
 
 Projeto desenvolvido para a disciplina de **Programação Funcional** (dupla: **Keven Gomes** e **Leonardo Abreu**).
@@ -96,6 +101,46 @@ hs2json/
     ├── DocProps.hs         # Propriedades de teste para Prettify
     └── PrettyProps.hs      # Propriedades de teste para PrettyJSON
 ```
+
+## Exemplo de saída
+
+O programa demonstra a construção e a serialização de um objeto JSON contendo diferentes tipos de dados, incluindo objetos aninhados e arrays.
+
+Para executar:
+
+```bash
+cabal run hs2json-exe
+```
+
+Exemplo de saída:
+
+```text
+=== Demonstracao hs2json ===
+JSON gerado:
+{"nome": "Leonardo", "idade": 24.0, "estudante": true, "linguagens": ["Haskell", "Python", "SQL"], "endereco": {"cidade": "Sao Luis", "estado": "MA"}, "observacao": "Aprendendo \"Haskell\"", "telefone": null}
+```
+
+O módulo `PutJSON` produz uma representação simples em uma linha, enquanto `Prettify` e `PrettyJSON` fornecem os recursos de construção e formatação de documentos.
+
+## Testes automatizados
+
+O projeto utiliza o QuickCheck para verificar propriedades das implementações.
+
+As propriedades incluem:
+
+- Recuperação de strings, números, booleanos, arrays e objetos;
+- Verificação de valores nulos e de tipos incompatíveis;
+- Geração aleatória de estruturas JSON com recursividade controlada;
+- Renderização de valores JSON;
+- Propriedades da biblioteca de pretty printing.
+
+Para executar todos os testes:
+
+```bash
+cabal test
+```
+
+Os resultados são apresentados no terminal, indicando quais propriedades passaram e quantos casos foram testados.
 
 ---
 
