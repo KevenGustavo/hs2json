@@ -147,12 +147,12 @@ demoRendering = do
     let doc :: Doc
         doc = Pretty.renderJValue exemploComplexo
 
-    putStrLn (bold ++ "  2. Prettify Compacto (Minificado para Payload de Rede):" ++ reset)
+    putStrLn (bold ++ "  2. Prettify Compacto (sem decisao de largura, sempre escolhe o ramo com quebras):" ++ reset)
     putStrLn (green ++ "     " ++ compact doc ++ reset)
     putStrLn ""
 
     putStrLn (bold ++ "  3. Prettify Formatado com Limite Estreito (pretty 35 colunas):" ++ reset)
-    putStrLn (cyan ++ "     [Quebra automatica com identacao hierarquica via algoritmo de Wadler]:" ++ reset)
+    putStrLn (cyan ++ "     [Quebra automatica: o 'fits' escolhe, ramo a ramo, o que cabe em 35 colunas]:" ++ reset)
     let indented35 = unlines . map ("     " ++) . lines $ pretty 35 doc
     putStr indented35
 
@@ -230,7 +230,7 @@ demoQuality = do
     putStrLn ("    " ++ green ++ "✔" ++ reset ++ " Compilação com GHC 9.4.8 e flag " ++ bold ++ "-Wall" ++ reset ++ " limpa (0 warnings).")
     putStrLn ("    " ++ green ++ "✔" ++ reset ++ " Testes Baseados em Propriedades (QuickCheck):")
     putStrLn "        • Geradores customizados com controle de tamanho: resize (n `div` 2) (evita estouro de memoria)."
-    putStrLn "        • Invariantes fundamentais testadas: prop_empty_id, prop_compact_pretty, escapes RFC 8259."
+    putStrLn "        • Invariantes fundamentais testadas: prop_empty_id, prop_pretty_vs_compact_tokens, escapes RFC 8259."
     putStrLn "        • Mais de 40 propriedades verificadas com 100 testes cada (100% PASS)."
     putStrLn ("    " ++ green ++ "✔" ++ reset ++ " Cobertura de Código com Haskell Program Coverage (HPC):")
     putStrLn "        • PrettyJSON: 100% de expressoes"
