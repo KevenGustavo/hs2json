@@ -1,5 +1,4 @@
 -- | Tipo JValue e funcoes de extracao seguras (accessors).
--- Pendente: implementar funcoes getString, getInt, getDouble, getBool, getObject, getArray e isNull.
 module SimpleJSON
     ( JValue(..)
     , getString

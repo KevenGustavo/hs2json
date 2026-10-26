@@ -71,7 +71,7 @@ printBanner = do
     putStrLn (bold ++ cyan ++ "╔══════════════════════════════════════════════════════════════════════════════╗" ++ reset)
     putStrLn (bold ++ cyan ++ "║" ++ yellow ++ "                 hs2json — Demonstração Visual e Acadêmica                    " ++ cyan ++ "║" ++ reset)
     putStrLn (bold ++ cyan ++ "║" ++ reset ++ "                       Programação Funcional em Haskell                       " ++ bold ++ cyan ++ "║" ++ reset)
-    putStrLn (bold ++ cyan ++ "║" ++ magenta ++ "                  Autores: Keven Gomes  &  Leonardo Abreu                     " ++ cyan ++ "║" ++ reset)
+    putStrLn (bold ++ cyan ++ "║" ++ magenta ++ "                  Autores: Keven Gomes  &  Leonardo Ferreira                     " ++ cyan ++ "║" ++ reset)
     putStrLn (bold ++ cyan ++ "╚══════════════════════════════════════════════════════════════════════════════╝" ++ reset)
     putStrLn "Este showcase demonstra os requisitos de avaliacao implementados pela dupla."
 
@@ -85,7 +85,7 @@ demoAccessors = do
     putStrLn "Demonstracao de pattern matching puro com tratamento seguro via tipo 'Maybe':"
     putStrLn ""
 
-    let valNome     = JString "Leonardo Abreu"
+    let valNome     = JString "Leonardo Ferreira"
         valIdade    = JNumber 24.0
         valPI       = JNumber 3.14159
         valAtivo    = JBool True
@@ -130,7 +130,7 @@ demoRendering = do
 
     let exemploComplexo = JObject
             [ ("projeto", JString "hs2json")
-            , ("autores", JArray [JString "Keven Gomes", JString "Leonardo Abreu"])
+            , ("autores", JArray [JString "Keven Gomes", JString "Leonardo Ferreira"])
             , ("modulo", JString "Prettify")
             , ("config", JObject
                 [ ("versao", JNumber 1.0)
@@ -233,7 +233,7 @@ demoQuality = do
     putStrLn "        • Invariantes fundamentais testadas: prop_empty_id, prop_pretty_vs_compact_tokens, escapes RFC 8259."
     putStrLn "        • Mais de 40 propriedades verificadas com 100 testes cada (100% PASS)."
     putStrLn ("    " ++ green ++ "✔" ++ reset ++ " Cobertura de Código com Haskell Program Coverage (HPC):")
-    putStrLn "        • PrettyJSON: 100% de expressoes"
+    putStrLn "        • PrettyJSON: 99% de expressoes"
     putStrLn "        • Prettify:   97% de expressoes"
     putStrLn "        • SimpleJSON: 95% de expressoes"
     putStrLn "        • PutJSON:    91% de expressoes"
