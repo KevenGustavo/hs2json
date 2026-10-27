@@ -1,6 +1,6 @@
 # hs2json
 
-> 🎥 **Vídeo de apresentação:** [Assistir no YouTube](#) _(link a definir)_
+> 🎥 **Vídeo de apresentação:** [Assistir no YouTube](https://youtu.be/2yAba-uxtFU) 
 >
 > Demonstração do funcionamento do projeto, da arquitetura,
 > dos testes automatizados e das dificuldades encontradas.
